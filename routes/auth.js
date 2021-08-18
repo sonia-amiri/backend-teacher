@@ -1,11 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const student = require('./../model/student.js');
 
-/* GET login. */
-router.get('/login', function (req, res) {
-	console.log('Hello Sonia!')
-    res.json({name: "Hesam"})
+/* POST login. */
+router.post('/login', async function (req, res) {
+	console.log('login!', req.body)
+    
     // Mongodb code
+    let value = await student.findOne({password:req.body.password, name:req.body.username});
+    if (value) {
+        res.json({redirect: "Teacher"})
+    } else {
+        res.json({redirect: "RegisterTeacher"})
+    }
 });
 
 router.post('/search',function (req, res) {
