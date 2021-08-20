@@ -4,8 +4,7 @@ const student = require('./../model/student.js');
 
 /* POST login. */
 router.post('/login', async function (req, res) {
-	console.log('login!', req.body)
-    
+	console.log('login', req.body)
     // Mongodb code
     let value = await student.findOne({password:req.body.password, name:req.body.username});
     if (value) {
@@ -23,8 +22,14 @@ router.post('/search',function (req, res) {
     res.json({result:'succesful'})
 });
 
-router.post('/register', function(req, res) {
+router.post('/register', async function(req, res) {
     console.log( req.body);
+    await student.create({
+        name: req.body.username,
+        mobile: req.body.mobile,
+        password: req.body.password,
+        email: req.body.email
+    }).catch(console.log)
     res.json({result : 'successful'})
 })
 module.exports = router;

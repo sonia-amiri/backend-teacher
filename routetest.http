@@ -15,3 +15,31 @@ content-type: application/json
     "name": "sample",
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
+
+###
+
+POST http://localhost:3000/exam/new
+content-type: application/json
+
+{
+  "name": "sample 2"
+}
+
+###
+
+GET http://localhost:3000/exam/list
+
+###
+
+GET http://localhost:3000/exam/questions/61200b276be72b2a92544465
+
+###
+
+POST http://localhost:3000/exam/add-question/61200b276be72b2a92544465
+content-type: application/json
+
+{
+  "index": 2,
+  "question": "Salam 2",
+  "answer": "Bye 2"
+}
